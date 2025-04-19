@@ -99,6 +99,14 @@
     - `age` is an integer
     - `friends` is an array of users
 
+## GraphiQL Tool
+A very handy tool for interacting with your GraphQL server:
+- Graphical interactive GraphQL IDE: We can test queries & mutations
+- Runs in the browser
+- Syntax highlighting
+- Error reporting
+- Automation and Hinting 
+
 ## Supported Languages
 - C# / .NET
 - **JavaScript / Node / Express**
@@ -131,3 +139,57 @@
                 }
         ```
 6. Run the server: `npm run dev:server`
+
+## Testing with GraphiQL
+
+### Fetch Customer data by ID
+1. Open GaphiQL in the browser: `http://localhost:4000/graphql`
+2. On the left-side pane enter your query:
+    ```
+    {
+        customer(id:"1"){
+            name,
+            email,
+            age
+        }
+    }
+    ```
+3. Check the response:
+    ```
+    {
+        "data": {
+            "customer": {
+            "name": "John Doe",
+            "email": "jdoe@gmail.com",
+            "age": 35
+            }
+        }
+    }
+    ```
+### Fetch customer `name` only
+1. Run query:
+    ```
+     {
+        customer(id:"1"){
+            name
+        }
+     }
+    ```
+2. Get customer name:
+    ```
+    {
+        "data": {
+            "customer": {
+                "name": "John Doe"
+            }
+        }
+    }
+    ```
+
+### Documentation Explorer
+See map of our data:
+
+1. Click on **< Docs** icon on top-right corner
+2. Click on **`RootQueryType`** link
+3. Ensure `customer` field that takes in an `id: String` which has type of `Customer` is displayed *(If you had a bunch of different types they will all be listed here.)*
+4. If you click on `customer` link, it will list arguments
