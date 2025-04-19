@@ -128,17 +128,26 @@ A very handy tool for interacting with your GraphQL server:
 ## Getting Started
 1. Open project folder in VSCode terminal and run `npm init -y`
 2. Ensure `package.json `is created
-3. Install dependencies: `npm i express express-graphql graphql nodemon`
+3. Install dependencies: 
+    ```
+    yarn add express express-graphql graphql nodemon json-server axios
+    ```
 4. Create `server.js` file
 5. In `package.json` file, 
     1. Set `"main": "server.js",`
-    2. Update `scripts`:
+    2. Define custom commands `dev:server` and `json:server`:
         ```
         "scripts": {
-                    "dev:server": "nodemon server.js"
+                    "dev:server": "nodemon server.js",
+                    "json:server": "json-server --watch data.json"
                 }
         ```
-6. Run the server: `npm run dev:server`
+        - **`dev:server`:** executes `nodemon server.js`. Nodemon watches your file changes (like `server.js`) and automatically restarts the server when changes are detected.
+        - **`json:server`:** launches a local REST API powered by `json-server`, using the contents of `data.json`.
+        - **`data.json`:** is your mock database file. When json-server runs, it will generate REST API routes based on this content.
+
+6. Run Nodemon Server: `npm run dev:server`
+7. Run JSON Server:  `npm run json:server`
 
 ## Testing with GraphiQL
 

@@ -1,4 +1,5 @@
 /* GraphQL schema, including types and resolvers */
+const axios = require('axios');
 const {
     GraphQLObjectType,
     GraphQLString,
@@ -8,12 +9,12 @@ const {
     GraphQLNonNull
 } = require('graphql');
 
-// Hardcoded Data - mock database
+/* // Hardcoded Data - mock database
 const customers = [
     { id: '1', name: 'John Doe', email: 'jdoe@gmail.com', age:35 },
     { id: '2', name: 'Steve Smith', email: 'steve@gmail.com', age:25 },
     { id: '3', name: 'Sara Williams', email: 'sara@gmail.com', age:32 }
-]
+] */
 
 // Customer Type - define the shape of the data Customer object should return
 const CustomerType = new GraphQLObjectType({
@@ -36,12 +37,13 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLString } // Expect an id argument
             },
             resolve(parentValue, args){ 
-                // Look up a customer from the hardcoded array using the id
+                /* // Look up a customer from the hardcoded array using the id
                 for(let i = 0; i < customers.length; i++){
                     if(customers[i].id == args.id){
                         return customers[i];
                     }
-                }
+                } */
+               
             }
         },
         /* Define customers field that returns a list of all customers */
