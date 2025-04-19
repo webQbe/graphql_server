@@ -120,7 +120,7 @@
 ## Getting Started
 1. Open project folder in VSCode terminal and run `npm init -y`
 2. Ensure `package.json `is created
-3. Install dependencies: `npm i express express-graphql nodemon`
+3. Install dependencies: `npm i express express-graphql graphql nodemon`
 4. Create `server.js` file
 5. In `package.json` file, 
     1. Set `"main": "server.js",`
