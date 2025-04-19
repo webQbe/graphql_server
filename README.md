@@ -186,6 +186,35 @@ A very handy tool for interacting with your GraphQL server:
     }
     ```
 
+### Fetch only `id`s of all customers
+1. Run query:
+    ```
+    {
+        customers {
+            id
+        }
+    }
+    ```
+2. Get customer `id`s:
+    ```
+    {
+        "data": {
+            "customers": [
+                {
+                    "id": "1"
+                },
+                {
+                    "id": "2"
+                },
+                {
+                    "id": "3"
+                }
+            ]
+        }
+    }
+    ```
+
+
 ### Documentation Explorer
 See map of our data:
 

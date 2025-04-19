@@ -43,6 +43,13 @@ const RootQuery = new GraphQLObjectType({
                     }
                 }
             }
+        },
+        /* Define customers field that returns a list of all customers */
+        customers: { 
+            type: new GraphQLList(CustomerType), // GraphQLList indicates that this returns multiple items
+            resolve(parentValue, args){
+                return customers; // Return hardcoded customers array
+            }
         }
     }
 })
