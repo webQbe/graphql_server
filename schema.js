@@ -62,7 +62,32 @@ const RootQuery = new GraphQLObjectType({
     }
 })
 
+// Define Mutation type to add a new customer
+const mutation = new GraphQLObjectType({
+    name: 'Mutation',
+    fields:{
+        addCustomer:{
+            type: CustomerType,
+            args:{ // the mutation expects 3 arguments (all required / GraphQLNonNull)
+                name: {type: new GraphQLNonNull(GraphQLString)},
+                email: {type: new GraphQLNonNull(GraphQLString)},
+                age: {type: new GraphQLNonNull(GraphQLInt)}
+            },
+            resolve(parentValue, args){
+                // Send new customer data to json-server
+                return axios.post('http://localhost:3000/customers', {
+                    name: args.name,
+                    email: args.email,
+                    age: args.age
+                })
+                .then(res => res.data); // Response data is returned to GraphQL & included in the mutation response
+            }
+        }
+    }
+})
+
 // Export Schema
 module.exports = new GraphQLSchema({
-    query: RootQuery // Tell GraphQL that API's root query is RootQuery
-});
+    query: RootQuery, // Tell GraphQL that API's root query is RootQuery
+    mutation          // Export mutations
+}); 

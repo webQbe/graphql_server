@@ -241,3 +241,29 @@ See map of our data:
 5. Open GaphiQL in the browser: `http://localhost:4000/graphql`
     1. Fetch customers with `id`s `4` and `5`
     2. Fetch `name`, `email`, `age` of all customers
+    3. Add a new customer:
+        1. Run mutation with query:
+            ```
+            mutation {
+                        addCustomer(name: "John Doe", email: "jdoe@gmail.com", age: 35) {
+                            id
+                            name
+                            email
+                            age
+                        }
+                    }
+            ```
+        2. Get the response data (with auto-generated customer `id`) :
+            ```
+            {
+                "data": {
+                        "addCustomer": {
+                            "id": "523b",
+                            "name": "John Doe",
+                            "email": "jdoe@gmail.com",
+                            "age": 35
+                    }
+                }
+            }
+            ```
+
