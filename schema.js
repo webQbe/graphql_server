@@ -37,7 +37,7 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLString } // Expect an id argument
             },
             resolve(parentValue, args){ // Run when customer field is queried
-                
+
                 // Send a GET request to your json-server
                 return axios.get('http://localhost:3000/customers/' + args.id)
                     .then(res => res.data); // Extract customer data from HTTP response
@@ -54,8 +54,9 @@ const RootQuery = new GraphQLObjectType({
         /* Define customers field that returns a list of all customers */
         customers: { 
             type: new GraphQLList(CustomerType), // GraphQLList indicates that this returns multiple items
-            resolve(parentValue, args){
-                return customers; // Return hardcoded customers array
+            resolve(parentValue, args){          // Run when customers field is queried
+                return axios.get('http://localhost:3000/customers/')
+                    .then(res => res.data); 
             }
         }
     }

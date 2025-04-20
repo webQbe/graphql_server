@@ -240,4 +240,4 @@ See map of our data:
 4. Ensure customers in the `customers` array in `data.json` is displayed
 5. Open GaphiQL in the browser: `http://localhost:4000/graphql`
     1. Fetch customers with `id`s `4` and `5`
-    
+    2. Fetch `name`, `email`, `age` of all customers
