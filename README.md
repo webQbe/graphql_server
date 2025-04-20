@@ -147,7 +147,7 @@ A very handy tool for interacting with your GraphQL server:
         - **`data.json`:** is your mock database file. When json-server runs, it will generate REST API routes based on this content.
 
 6. Run Nodemon Server: `npm run dev:server`
-7. Run JSON Server:  `npm run json:server`
+
 
 ## Testing with GraphiQL
 
@@ -231,3 +231,13 @@ See map of our data:
 2. Click on **`RootQueryType`** link
 3. Ensure `customer` field that takes in an `id: String` which has type of `Customer` is displayed *(If you had a bunch of different types they will all be listed here.)*
 4. If you click on `customer` link, it will list arguments
+
+
+## Testing JSON-Server
+1. Run JSON Server:  `npm run json:server` 
+2. Open in the browser: `http://localhost:3000/`
+3. Open customers link: `http://localhost:3000/customers`
+4. Ensure customers in the `customers` array in `data.json` is displayed
+5. Open GaphiQL in the browser: `http://localhost:4000/graphql`
+    1. Fetch customers with `id`s `4` and `5`
+    

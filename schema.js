@@ -36,7 +36,12 @@ const RootQuery = new GraphQLObjectType({
             args: {
                 id: { type: GraphQLString } // Expect an id argument
             },
-            resolve(parentValue, args){ 
+            resolve(parentValue, args){ // Run when customer field is queried
+                
+                // Send a GET request to your json-server
+                return axios.get('http://localhost:3000/customers/' + args.id)
+                    .then(res => res.data); // Extract customer data from HTTP response
+
                 /* // Look up a customer from the hardcoded array using the id
                 for(let i = 0; i < customers.length; i++){
                     if(customers[i].id == args.id){
