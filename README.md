@@ -233,7 +233,7 @@ See map of our data:
 4. If you click on `customer` link, it will list arguments
 
 
-## Testing JSON-Server
+## Testing Mutations with JSON-Server
 1. Run JSON Server:  `npm run json:server` 
 2. Open in the browser: `http://localhost:3000/`
 3. Open customers link: `http://localhost:3000/customers`
@@ -241,6 +241,7 @@ See map of our data:
 5. Open GaphiQL in the browser: `http://localhost:4000/graphql`
     1. Fetch customers with `id`s `4` and `5`
     2. Fetch `name`, `email`, `age` of all customers
+
     3. Add a new customer:
         1. Run mutation with query:
             ```
@@ -266,6 +267,7 @@ See map of our data:
                 }
             }
             ```
+    
     4. Delete an existing customer:
         1. Run mutation:
             ```
@@ -286,3 +288,28 @@ See map of our data:
             }
             ```
         3. Ensure the customer is deleted from `data.json` file
+
+    5. Update a field of an existing customer:
+        1. Run mutation:
+            ```
+            mutation{
+                        editCustomer(id:"2", age:45){
+                            id,
+                            name,
+                            age
+                        }
+            }
+            ```
+        2. Get response:
+            ```
+            {
+                "data": {
+                            "editCustomer": {
+                                "id": "2",
+                                "name": "Keith Wilson",
+                                "age": 45
+                            }
+                }
+            }
+            ``` 
+         3. Ensure the customer is updated in `data.json` file

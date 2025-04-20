@@ -62,7 +62,7 @@ const RootQuery = new GraphQLObjectType({
     }
 })
 
-// Define Mutation type to add a new customer
+// Define Mutation type to add, delete, update customers
 const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields:{
@@ -92,6 +92,21 @@ const mutation = new GraphQLObjectType({
             resolve(parentValue, args){
                 return axios.delete('http://localhost:3000/customers/' + args.id) // REST Call
                 .then(res => res.data); // Return deleted customer data
+            }
+        },
+        editCustomer:{
+            type: CustomerType, 
+            args:{ 
+                id:{type: new GraphQLNonNull(GraphQLString)}, // ID is required
+                /* Only provided fields will be updated */
+                name: {type: GraphQLString},
+                email: {type: GraphQLString},
+                age: {type: GraphQLInt}
+            },
+            resolve(parentValue, args){ /* Make PATCH request with the given args */
+                // Sends updated fields
+                return axios.patch('http://localhost:3000/customers/' + args.id, args)
+                .then(res => res.data); // Return updated customer   
             }
         }
     }
