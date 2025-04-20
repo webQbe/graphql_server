@@ -67,7 +67,7 @@ const mutation = new GraphQLObjectType({
     name: 'Mutation',
     fields:{
         addCustomer:{
-            type: CustomerType,
+            type: CustomerType, // The type of data this mutation returns
             args:{ // the mutation expects 3 arguments (all required / GraphQLNonNull)
                 name: {type: new GraphQLNonNull(GraphQLString)},
                 email: {type: new GraphQLNonNull(GraphQLString)},
@@ -80,7 +80,18 @@ const mutation = new GraphQLObjectType({
                     email: args.email,
                     age: args.age
                 })
-                .then(res => res.data); // Response data is returned to GraphQL & included in the mutation response
+                .then(res => res.data); // Response data is returned to GraphQL &
+                                        //  included in the mutation response
+            }
+        },
+        deleteCustomer:{
+            type: CustomerType,
+            args:{  
+                    id:{type: new GraphQLNonNull(GraphQLString)} // The customer ID is required
+            },
+            resolve(parentValue, args){
+                return axios.delete('http://localhost:3000/customers/' + args.id) // REST Call
+                .then(res => res.data); // Return deleted customer data
             }
         }
     }

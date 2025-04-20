@@ -266,4 +266,23 @@ See map of our data:
                 }
             }
             ```
-
+    4. Delete an existing customer:
+        1. Run mutation:
+            ```
+            mutation{
+                        deleteCustomer(id:"5"){
+                            id
+                        }
+                    }
+            ```
+        2. Get response:
+            ```
+            {
+                "data": {
+                    "deleteCustomer": {
+                    "id": "5"
+                    }
+                }
+            }
+            ```
+        3. Ensure the customer is deleted from `data.json` file
